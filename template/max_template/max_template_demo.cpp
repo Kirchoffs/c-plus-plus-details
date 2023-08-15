@@ -1,4 +1,4 @@
-#include "max_template_test.hpp"
+#include "max_template_demo.hpp"
 #include <iostream>
 #include <string>
 
