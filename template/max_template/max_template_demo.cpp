@@ -19,4 +19,6 @@ int main()
     int o1 = 42;
     double o2 = 2.718;
     std::cout << "max_max_decltype(o1, o2): " << ::max_decltype(o1, o2) << std::endl;
+
+    std::cout << "max_common_type(o1, o2): " << ::max_common_type(o1, o2) << std::endl;
 }

@@ -12,3 +12,9 @@ auto max_decltype(T a, U b) -> typename std::decay<decltype(a > b ? a : b)>::typ
 {
     return b < a ? a : b;
 }
+
+template<typename T, typename U>
+std::common_type_t<T, U> max_common_type (T a, U b)
+{
+  return b < a ? a : b;
+}
