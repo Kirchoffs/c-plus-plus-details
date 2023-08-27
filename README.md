@@ -13,6 +13,24 @@ Since C++ 11
 ### is_same_v
 Since C++ 17
 
+### Overload
+```
+int f(int a) {
+    return 1;
+}
+
+// Valid
+double f(int a, int b) {
+    return 2;
+}
+
+// Not valid
+// At least one parameter type must be different
+double f(int a) {
+    return 3;
+}
+```
+
 ## Template
 ### Two-phase Translation
 Two-phase translation leads to an important problem in the handling of templates in practice: When a function template is used in a way that triggers its instantiation, a compiler will (at some point) need to see that template’s definition. This breaks the usual compile and link distinction for ordinary functions, when the declaration of a function is sufficient to compile its use. One simple way to resolve this is to implement each template inside a header file.
@@ -37,3 +55,20 @@ void foo() {
     // ...
 }
 ```
+
+### Overload Example
+```
+int max (int a, int b)
+{
+    return b < a ? a : b;
+}
+
+template<typename T> T max (T a, T b)
+{
+    return b < a ? a : b;
+}
+```
+
+For `max(7, 42)`, the first one will be called.  
+For `max(7.0, 42.0)`, the second one will be called.  
+For `max('a', 42.0)`, the first one will be called, because __automatic type conversion__ is not considered for deduced template parameters but is considered for ordinary function parameters. It uses the nontemplate function (while 'a' and 42.0 both are converted to int).
