@@ -31,6 +31,11 @@ double f(int a) {
 }
 ```
 
+### default & delete
+When you use `=default` for a special member function (constructor, destructor, copy constructor, move constructor, copy assignment operator, or move assignment operator), you are telling the compiler to generate the default implementation of that function if it would not be generated otherwise. This can be useful when you want to use the default behavior provided by the compiler but also need to define custom behavior for other special member functions.
+
+When you use =delete for a special member function, you are explicitly instructing the compiler to prevent the generation of that function. This is often used when you want to disable certain operations, like copying or moving objects of a class, to make your code safer or to enforce a particular design.
+
 ## Template
 ### Two-phase Translation
 Two-phase translation leads to an important problem in the handling of templates in practice: When a function template is used in a way that triggers its instantiation, a compiler will (at some point) need to see that template’s definition. This breaks the usual compile and link distinction for ordinary functions, when the declaration of a function is sufficient to compile its use. One simple way to resolve this is to implement each template inside a header file.

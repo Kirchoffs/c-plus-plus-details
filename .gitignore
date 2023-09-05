@@ -1,2 +1,7 @@
-.vscode/
-output/
+*
+!*/
+!*.cpp
+!*.hpp
+!*.c
+!*.h
+!*.md
