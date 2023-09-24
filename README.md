@@ -1,6 +1,6 @@
 # c-plus-plus-details
 
-## General
+## General C++
 ### CV Type Qualifier
 CV: Const & Volatile
 
@@ -43,6 +43,23 @@ int const * b;        // b is a pointer to a const int
 int * const c;        // c is a const pointer to an int
 int const * const d;  // d is a const pointer to a const int
 ```
+
+## General C
+### snprintf
+`snprintf()` is a C function that redirects the output of the standard `printf()` function to a buffer. 
+It formats the given strings into a series of characters or values in the buffer area. 
+`snprintf()` is identical to the `sprintf()` function, but with the addition of the n argument. The n argument indicates the maximum number of characters to be written to the buffer. 
+
+`snprintf()` appends a null character to the end of the resulting output. This null character is also counted towards the size of the string, so, only n - 1 characters are written to the buffer.
+
+### scanf & printf
+- scanf scan the input from the standard input stream stdin and store the value into the variable address passed as parameter.
+
+- sscanf scan the input from the string passed as first parameter and store the value into the variable address passed as parameter.
+
+- printf print the output to the standard output stream stdout.
+
+- sprintf print the output to the string passed as first parameter.
 
 ## Template
 ### Two-phase Translation
