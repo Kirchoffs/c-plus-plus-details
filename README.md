@@ -36,6 +36,14 @@ When you use `=default` for a special member function (constructor, destructor, 
 
 When you use =delete for a special member function, you are explicitly instructing the compiler to prevent the generation of that function. This is often used when you want to disable certain operations, like copying or moving objects of a class, to make your code safer or to enforce a particular design.
 
+### Pointer & Const
+```
+int * a;              // a is a pointer to an int
+int const * b;        // b is a pointer to a const int
+int * const c;        // c is a const pointer to an int
+int const * const d;  // d is a const pointer to a const int
+```
+
 ## Template
 ### Two-phase Translation
 Two-phase translation leads to an important problem in the handling of templates in practice: When a function template is used in a way that triggers its instantiation, a compiler will (at some point) need to see that template’s definition. This breaks the usual compile and link distinction for ordinary functions, when the declaration of a function is sufficient to compile its use. One simple way to resolve this is to implement each template inside a header file.
