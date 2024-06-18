@@ -44,6 +44,20 @@ int * const c;        // c is a const pointer to an int
 int const * const d;  // d is a const pointer to a const int
 ```
 
+The name of an array usually evaluates to the address of the first element of the array, so array and &array have the same value (but different types, so array + 1 and &array + 1 will not be equal if the array is more than 1 element long).
+
+When the array name is an operand of `sizeof` or unary `&` (address-of), the name refers to the array object itself. Thus `sizeof array` gives you the size in bytes of the entire array, not the size of a pointer.
+
+For an array defined as T array[size], it will have type T*. When/if you increment it, you get to the next element in the array.
+
+`&array` evaluates to the same address, but given the same definition, it creates a pointer of the type T(*)[size] -- i.e., it's a pointer to an array, not to a single element. If you increment this pointer, it'll add the size of the entire array, not the size of a single element. For example, with code like this:
+```
+char array[16];
+printf("%p\t%p", (void*) &array, (void*) (&array + 1));
+```
+
+We can expect the second pointer to be 16 greater than the first (because it's an array of 16 char's). If we did the same thing with a pointer to char, we'd get a difference of 1 instead.
+
 ## General C
 ### snprintf
 `snprintf()` is a C function that redirects the output of the standard `printf()` function to a buffer. 

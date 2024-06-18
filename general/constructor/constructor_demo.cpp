@@ -125,5 +125,12 @@ int main() {
     std::cout << "Person 8: ";
     person8.display();
 
+    // Parenthesis initialization 
+    Person person9("David", 60);
+
+    // Brace initialization / List initialization
+    // Brace initialization is preferred over parenthesis initialization because it prevents narrowing conversions
+    Person person10{"Eve", 70};
+
     return 0;
 }
