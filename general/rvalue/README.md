@@ -16,6 +16,10 @@ If T is a non-class type, the type of the rvalue is the __cv-unqualified__ versi
 - Built-in arrays and functions
 
 ### CV Qualifiers
+CV qualified: const & volatile
+
+valatile: the volatile qualifier is used to indicate that a variable may be changed by something outside the control of the program (e.g., hardware or another thread), so the compiler should not optimize reads or writes to it. For example, volatile int b; tells the compiler to always read the value from memory rather than relying on cached values.
+
 In C, rvalues never have cv-qualified types. Only lvalues do.  
 In C++, on the other hand, class rvalues can have cv-qualified types, but built-in types (like int) can't.
 
@@ -38,6 +42,32 @@ auto c = static_cast<A&&>(a); // xvalue
 - non-const lvalue reference
 - const rvalue reference
 - non-const rvalue reference
+
+### const rvalue reference
+```
+void printVector(const std::vector<int>&& v) {
+    for (auto i : v) {
+        std::cout << i << " "; // ERROR: cannot modify v
+    }
+}
+
+int main() {
+    printVector(std::vector<int>{1, 2, 3});
+    return 0;
+}
+```
+
+### non-const rvalue reference
+```
+void modifyVector(std::vector<int>&& v) {
+    v.push_back(4);
+}
+
+int main() {
+    modifyVector(std::vector<int>{1, 2, 3});
+    return 0;
+}
+```
 
 ### Before C++11
 #### non-const lvalue reference
@@ -125,14 +155,14 @@ struct Foo {
 };
 
 int main() {
-    Foo foo_alpha;              
-    Foo foo_beta = foo_alpha;   
-    Foo foo_gamma;
-    foo_gamma = foo_alpha;
-    Foo foo_delta = Foo();
-    Foo foo_epsilon;
-    foo_epsilon = Foo();
-    Foo foo_zeta = std::move(foo_alpha);
+    Foo foo_alpha;                       // Default constructor
+    Foo foo_beta = foo_alpha;            // Copy constructor
+    Foo foo_gamma;                       // Default constructor
+    foo_gamma = foo_alpha;               // Copy assignment
+    Foo foo_delta = Foo();               // Default constructor
+    Foo foo_epsilon;                     // Default constructor
+    foo_epsilon = Foo();                 // Move assignment
+    Foo foo_zeta = std::move(foo_alpha); // Move constructor
 }
 ```
 
