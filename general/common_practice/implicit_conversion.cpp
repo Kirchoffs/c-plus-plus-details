@@ -2,11 +2,15 @@
 #include <string>
 
 class Distance {
-    double meters;
+    int meters;
 
 public:
-    Distance(double m) : meters(m) {
-        std::cout << "Implicit conversion: " << m << " meters\n";
+    Distance(int meters) : meters(meters) {
+        std::cout << "Implicit conversion: " << meters << " meters\n";
+    }
+
+    explicit Distance(std::string m) : meters(std::stoi(m)) {
+        std::cout << "Explicit conversion: " << meters << " meters\n";
     }
 
     void display() {
@@ -21,6 +25,7 @@ int main() {
 
     // Implicit conversion from double to Distance
     // Implicit conversion is achieved by the constructor of Distance
-    Distance d = 42.0;
+    Distance d = 42;
+    // Distance d = std::string("42"); // Error: explicit conversion is forbidden for this case
     d.display();
 }
