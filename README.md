@@ -75,6 +75,22 @@ It formats the given strings into a series of characters or values in the buffer
 
 - sprintf print the output to the string passed as first parameter.
 
+## Compiler Related
+### Unused
+```
+class DiskScheduler {
+  DiskManager *disk_manager_ __attribute__((__unused__));
+};
+```
+`__attribute__((__unused__))` is compile`r-specific. It tells the compiler that the variable is intentionally unused and should not generate a warning. It is used in GCC and Clang.
+
+```
+class DiskScheduler {
+  [[maybe_unused]] DiskManager *disk_manager_;
+};
+```
+`[[maybe_unused]]` is part of the C++17 standard and is more portable.
+
 ## Template
 ### Two-phase Translation
 Two-phase translation leads to an important problem in the handling of templates in practice: When a function template is used in a way that triggers its instantiation, a compiler will (at some point) need to see that template’s definition. This breaks the usual compile and link distinction for ordinary functions, when the declaration of a function is sufficient to compile its use. One simple way to resolve this is to implement each template inside a header file.
