@@ -35,4 +35,5 @@ void printSide(Square square) {
 int main() {
     Square square(5);
     printSide(square);
+    std::cout << "Area: " << square.getArea() << std::endl;
 }
